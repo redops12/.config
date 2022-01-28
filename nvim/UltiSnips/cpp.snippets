@@ -1,0 +1,56 @@
+snippet std
+using namespace std;
+endsnippet
+
+
+snippet #i "Include" wA
+#include $0
+endsnippet
+
+snippet if "If expand" w
+if (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet eif "elseIf expand" w
+else if (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet else "else expand" w
+else {
+	$0
+}
+endsnippet
+
+snippet while "While expand" w
+while (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet fori "For int expand" w
+for (int ${1:i} = 0; $1 < ${2:n}; ++$1) {
+	$0
+}
+endsnippet
+
+snippet ifor "Iterated for expand" w
+for (${1:int} ${2:x} : ${3:vec}) {
+	$0
+}
+endsnippet
+
+snippet func "function expand" w
+${2:void} ${1:foo}(${3:int x}) {
+	$0
+}
+endsnippet
+
+snippet main "main expand" wiA
+int main(${1:int argc, char * argv[]}) {
+	$0
+}
+endsnippet
