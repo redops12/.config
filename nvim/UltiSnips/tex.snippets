@@ -25,7 +25,7 @@ snippet enum
 endsnippet
 
 snippet	dfn
-\begin{definition}{$1}
+\begin{definition}[$1] ~\\\\
 	$0
 \end{definition}
 endsnippet
@@ -37,25 +37,25 @@ snippet	ex
 endsnippet
 
 snippet	thm
-\begin{theorem}{$1}
+\begin{theorem}[$1] ~\\\\
 	$0
 \end{theorem}
 endsnippet
 
 snippet	lem
-\begin{lemma}
+\begin{lemma} ~\\\\
 	$0
 \end{lemma}
 endsnippet
 
 snippet	rmk
-\begin{remark}
+\begin{remark} ~\\\\
 	$0
 \end{remark}
 endsnippet
 
 snippet	cor
-\begin{corollary}
+\begin{corollary} ~\\\\
 	$0
 \end{corollary}
 endsnippet
@@ -76,6 +76,14 @@ snippet md "Math" wA
 $${1}$$0
 endsnippet
 
+priority 1
+snippet dm "Math" wbA
+\begin{align*}
+$0
+\end{align*}
+endsnippet
+
+priority 0
 snippet dm "Math" wA
 
 \begin{align*}

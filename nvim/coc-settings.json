@@ -9,7 +9,7 @@
 					"directory": "/tmp/ccls"
 				}
 			}
-		}
+		},
 		"golang": {
 			"command": "gopls",
 			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
@@ -17,6 +17,11 @@
 			"initializationOptions": {
 				"usePlaceholders": true
 			}
-	  	}
+	  	},
+		python: {
+			command: python3,
+			rootPatterns: [.git/], 
+			filetypes: [py]
+		}
 	}
 }

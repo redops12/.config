@@ -6,7 +6,21 @@ inoremap zz &
 inoremap zf $
 inoremap zb <BS>
 
-let mapleader = ","
+
+" open vimrc using ,v
+set hidden
+let mapleader=","
+nnoremap <leader>v :e $MYVIMRC<cr>
+
+" source vimrc using ,sv
+nnoremap <leader>sv :w <bar> source $MYVIMRC<CR>
+
+" clear all buffers using ,bc
+nnoremap <leader>bc :%bd# <bar> e# <bar> bd#<CR>
+
+" search for highlighted text using // 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
@@ -18,6 +32,8 @@ Plug 'tpope/vim-commentary'
 Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Konfekt/FastFold'
+Plug 'junegunn/fzf'
 
 call plug#end()
 
@@ -28,6 +44,7 @@ let g:UltiSnipsEditSplit = 'vertical'
 
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
+let g:vimtex_fold_enabled=1
 
 let g:clang_library_path='/lib/llvm-10/'
 
@@ -228,3 +245,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+

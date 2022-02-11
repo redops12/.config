@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/mnt/c/Users/rwbur/Notes/W22/math494/hw4'
+let g:netrw_dirhist_0='/mnt/c/Users/rwbur/Notes/W22/stats412/hw4'
+let g:netrw_dirhist_9='/mnt/c/Users/rwbur/Notes/W22/eecs491/p2/kayuw.keshsing.rwburke.2/viewservice'
 let g:netrw_dirhist_8='/mnt/c/Users/rwbur/Notes/W22/math494/hw1'
 let g:netrw_dirhist_7='/mnt/c/Users/rwbur/Notes/W22/math494'
 let g:netrw_dirhist_6='/usr/lib32'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_5='/usr'
 let g:netrw_dirhist_4='/'
 let g:netrw_dirhist_3='/mnt'
 let g:netrw_dirhist_2='/mnt/c'
-let g:netrw_dirhist_1='/mnt/c/Users'
-let g:netrw_dirhist_0='/mnt/c/Users/rwbur'
-let g:netrw_dirhist_9='/mnt/c/Users'
