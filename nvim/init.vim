@@ -37,9 +37,9 @@ Plug 'junegunn/fzf'
 
 call plug#end()
 
-let g:UltiSnipsExpandTrigger = 'qq'
-let g:UltiSnipsJumpForwardTrigger = 'qq'
-let g:UltiSnipsJumpBackwardTrigger = 'QQ'
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 let g:tex_flavor='latex'
