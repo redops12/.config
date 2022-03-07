@@ -18,10 +18,8 @@
 				"usePlaceholders": true
 			}
 	  	},
-		python: {
-			command: python3,
-			rootPatterns: [.git/], 
-			filetypes: [py]
-		}
-	}
+	},
+	"snippets.ultisnips.directories": [
+	  "~/.config/nvim/UltiSnips/"
+	],
 }

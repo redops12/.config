@@ -12,11 +12,20 @@ set hidden
 let mapleader=","
 nnoremap <leader>v :e $MYVIMRC<cr>
 
-" source vimrc using ,sv
-nnoremap <leader>sv :w <bar> source $MYVIMRC<CR>
+" open commands list
+" nnoremap <leader>z :e $COMMAND_LIST_FILE<cr>
 
-" clear all buffers using ,bc
+" source vimrc using ,sv
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 nnoremap <leader>bc :%bd# <bar> e# <bar> bd#<CR>
+if !exists("init_vim_write")
+	let init_vim_write= 1
+	autocmd BufWrite init.vim | :source $MYVIMRC
+endif
+
+" save the current file with sudo
+nnoremap <leader>sw :w !sudo tee %<CR>
 
 " search for highlighted text using // 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -27,34 +36,69 @@ Plug 'tpope/vim-surround'
 Plug 'sirver/UltiSnips'
 Plug 'lervag/vimtex'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-python'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Konfekt/FastFold'
 Plug 'junegunn/fzf'
+Plug 'xiyaowong/nvim-transparent'
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+Plug 'famiu/bufdelete.nvim'
+Plug 'itchyny/lightline.vim'
+Plug 'andymass/vim-matchup'
+Plug 'rhysd/vim-clang-format'
+Plug 'frazrepo/vim-rainbow'
+Plug 'tpope/vim-fugitive'
+" Plug 'neoclide/coc-snippets'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'flazz/vim-colorschemes'
+" Plug 'jaredgorski/spacecamp'
 
 call plug#end()
 
+" basic settings
+set tabstop=4
+set shiftwidth=4
+set scrolloff=5
+set sidescrolloff=10
+set number
+set cursorline
+" set lazyredraw
+set showmatch
+set nowrap
+set wildmode=longest,list,full
+set ignorecase
+
+" Colors!!!
+	let g:transparent_enabled = v:true
+	set termguicolors
+	set background=dark
+	colorscheme PaperColor
+	let g:lightline = { 'colorscheme': 'PaperColor' }
+	let g:rainbow_active = 1
+
+" UltiSnips
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsEditSplit = 'vertical'
 
+" vimtex settings
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
 let g:vimtex_fold_enabled=1
+let g:vimtex_view_general_viewer='evince'
+let g:matchup_override_vimtex = 1
+let g:vimtex_delim_stopline = 100
 
 let g:clang_library_path='/lib/llvm-10/'
 
-set tabstop=4
-set shiftwidth=4
-set number
-set cursorline
-set lazyredraw
-set showmatch
-set wildmode=longest,list,full
 
 au BufNewFile,BufReadPost,FilterReadPost,FileReadPost  * set nospell
 
@@ -65,17 +109,7 @@ au BufNewFile,BufReadPost,FilterReadPost,FileReadPost  * set nospell
 	map <C-l> <C-w>l
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
-	autocmd VimLeave *.tex !texclear %
-
-" Colors!!!
-	set background=dark
-	"colorscheme wal
-	colorscheme palenight
-	let g:airline_theme = "palenight"
-
-" Conceal
-	set conceallevel=2
-	let g:tex_conceal="abdgm"
+	" autocmd VimLeave *.tex  | !texclear %
 
 " Splits open at the bottom and right, which is not bad, unlike vim defaults.
 	set splitbelow splitright
@@ -101,6 +135,20 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+" keybindings for go debugger
+nnoremap <leader>h :GoDebugBreakpoint<cr>
+nnoremap <leader>j :GoDebugStep<cr>
+nnoremap <leader>l :GoDebugNext<cr>
+
+" save manual folds across restarts
+augroup remember_folds
+  let blacklist = ['tex']
+  autocmd!
+  autocmd BufWinLeave * if index(blacklist, &ft) < 0 | mkview
+  autocmd BufWinEnter * if index(blacklist, &ft) < 0 | silent! loadview
+augroup END
+
+
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -113,16 +161,16 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> qqq
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
