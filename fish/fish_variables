@@ -4,12 +4,15 @@ SETUVAR CMD:\x1d
 SETUVAR CM_LAUNCHER:rofi
 SETUVAR COMMAND_LIST_FILE:/home/rwburke/\x2ecommand_list
 SETUVAR EDITOR:nvim
+SETUVAR --path GOPATH:/home/rwburke/go
+SETUVAR GOROOT:/home/rwburke/go/
+SETUVAR --path PATH:/home/rwburke/go/\x1e/home/rwburke/go/\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/bin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl
 SETUVAR SHELL:/usr/bin/fish
 SETUVAR TERM:screen\x2d256color
 SETUVAR VISUAL:nvim
 SETUVAR XDG_CONFIG_HOME:/home/rwburke/\x2econfig/
 SETUVAR XDG_RUNTIME_DIR:/tmp
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:ff00af
 SETUVAR fish_color_cancel:normal
 SETUVAR fish_color_command:00ffff
@@ -38,3 +41,5 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr
+SETUVAR fish_user_paths:/home/rwburke/go/bin\x1e/home/rwburke/go\x1e/home/rwburke/go/

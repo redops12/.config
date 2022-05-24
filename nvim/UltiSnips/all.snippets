@@ -1,7 +1,7 @@
 global !p
 def calculator(args):
 	import subprocess		
-	str = subprocess.check_output("echo \"" + args + "\" | bc", shell=True).decode()
+	str = subprocess.check_output("echo \"scale=5;" + args + "\" | bc", shell=True).decode()
 	return str[:len(str) - 1]
 endglobal
 

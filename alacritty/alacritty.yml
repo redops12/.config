@@ -38,8 +38,4 @@ font:
     y: 0
   # use_thin_strokes: true
 shell: 
-  program: /bin/bash
-  args:
-    - -l
-    - -c
-    - "tmux -f /home/rwburke/.tmux.config attach || tmux -f /home/rwburke/.tmux.config" 
+  program: /bin/bash 

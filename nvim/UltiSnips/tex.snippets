@@ -20,7 +20,8 @@ endsnippet
 
 snippet enum
 \begin{enumerate}[label = ${1:\arabic*)}]
-	$0 ~\\
+	\item ~\\
+		$0
 \end{enumerate}
 endsnippet
 
@@ -73,13 +74,13 @@ $0
 endsnippet
 
 snippet md "Math" wA
-$${1}$$0
+\\( ${1} \\) $0
 endsnippet
 
 priority 1
 snippet dm "Math" wbA
 \begin{align*}
-$0
+	$0
 \end{align*}
 endsnippet
 
@@ -87,7 +88,7 @@ priority 0
 snippet dm "Math" wA
 
 \begin{align*}
-$0
+	$0
 \end{align*}
 endsnippet
 
@@ -114,6 +115,11 @@ endsnippet
 context "math()"
 snippet // "Fraction" iA
 \\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet / "fraction visual"	
+\\frac{${VISUAL:1}}{$1}$0
 endsnippet
 
 context "math()"
@@ -162,37 +168,39 @@ snippet uu "underline" iA
 endsnippet
 
 context "math()"
-snippet right "Right bold arrow" A
+snippet right "Right bold arrow" iA
 \\Rightarrow
 endsnippet
 
 context "math()"
-snippet left "Left bold arrow" A
+snippet left "Left bold arrow" iA
 \\Leftarrow
 endsnippet
 
 context "math()"
-snippet to "to" A
+snippet to "to" iA
 \\to
 endsnippet
 
 context "math()"
-snippet mapsto "mapsto" A
+priority 10
+snippet mapsto "mapsto" iA
 \\mapsto
 endsnippet
 
 context "math()"
-snippet ito "injective to" A
+priority 0
+snippet ito "injective to" iA
 \\hookrightarrow
 endsnippet
 
 context "math()"
-snippet sto "surjective to" A
+snippet sto "surjective to" iA
 \\twoheadrightarrow
 endsnippet
 
 context "math()"
-snippet bto "bijective to" A
+snippet bto "bijective to" iA
 \\leftrightarrow
 endsnippet
 

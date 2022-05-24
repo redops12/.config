@@ -15,5 +15,6 @@ set -U CM_LAUNCHER 'rofi'
 
 set -U COMMAND_LIST_FILE /home/rwburke/.command_list
 set -U SHELL /usr/bin/fish
+set -U GOPATH /home/rwburke/go 
 
 alias curr='cd ~/Notes/W22'

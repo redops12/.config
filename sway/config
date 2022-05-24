@@ -30,6 +30,7 @@ set $menu wofi --show=drun --lines=5 --prompt=""
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg /home/rwburke/Downloads/2400x1350_shore-at-sunset.jpg fill
 output * bg /home/rwburke/Downloads/pexels-pixabay-414102.jpg fill
+gaps inner 20
 
 #
 # Example configuration:
@@ -72,10 +73,10 @@ set $lock swaylock -f \
 #
 # Example configuration:
 #
-exec swayidle -w \
-         timeout 300 '$lock' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep '$lock'
+# exec swayidle -w \
+#          timeout 900 '$lock' \
+#          timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep '$lock'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -113,7 +114,7 @@ exec autotiling
 
     # Start your launcher
 	for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 30 ppt, border pixel 5
-	set $menu exec ps aux | grep -v grep | grep sway-launcher-desktop &> /dev/null || $term --class=launcher -e /bin/sway-launcher-desktop
+	set $menu exec ps aux | grep -v grep | grep sway-launcher-desktop &> /dev/null || alacritty --class=launcher -e /bin/sway-launcher-desktop
 	bindsym $mod+Space exec $menu
     # bindsym $mod+Space exec $menu
 
@@ -263,6 +264,7 @@ bar {
 # exec clipmenud
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+exec tmux -f /home/rwburke/.tmux.config
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
@@ -283,7 +285,7 @@ bindsym XF86Search exec bemenu-run
 gaps inner 5
 
 # remove title bar
-default_border pixel 5
+default_border pixel 2
 
 # clipmenu keybind
 # bindsym $mod+Shift+p exec clipmenu
@@ -293,10 +295,10 @@ bindsym $mod+Shift+p exec clipman pick -t wofi
 for_window [title="Brave"] move container to workspace number 2
 for_window [title="^Discord*"] move container to workspace number 6
 for_window [title="^Spotify*"] move container to workspace number 7
-for_window [app_id="^evince$"] layout stacking
+# for_window [app_id="^evince$"] focus; layout stacking;
 
-# client.unfocused #ff8800 #285577 #ffffff
-client.unfocused #FF8800 #285577 #FFFFFF
-client.focused #FF8800 #285577 #FFFFFF
-client.focused_inactive #FF8800 #285577 #FFFFFF
+client.unfocused #842680 #842680 #ffffff #842680
+client.focused_inactive #842680 #842680 #ffffff #842680
+client.background #842680 #842680 #ffffff #842680
+client.focused #842680 #FF5733 #ffffff #FF5733
 include /etc/sway/config.d/*
